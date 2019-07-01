@@ -19,7 +19,7 @@ function sassCompile() {
 
 function watching() {
    watch('./*.html').on('change', copyHtml);
-   watch('./scss/*.scss').on('change', sassCompile, copyCss);
+   watch('./scss/*.scss').on('change', series(sassCompile, copyCss));
 }
 
 exports.default = series(copyHtml, sassCompile, watching);
